@@ -114,8 +114,8 @@ void AlarmWindow::pickSound()
     if (!fileName.isEmpty()) {
         m_soundPath = fileName;
         m_soundLabel->setText(QFileInfo(fileName).fileName());
-        m_player->setSource(QUrl::fromLocalFile(m_soundPath));
     }
+
 }
 
 void AlarmWindow::scheduleAlarm()
