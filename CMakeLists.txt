@@ -8,8 +8,12 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia)
-qt_standard_project_setup()
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
+
+if (QT_VERSION_MAJOR EQUAL 6)
+    qt_standard_project_setup()
+endif()
 
 set(SOURCES
     src/main.cpp
@@ -20,9 +24,18 @@ set(HEADERS
     src/alarmwindow.h
 )
 
-qt_add_executable(achim_alarm
-    ${SOURCES}
-    ${HEADERS}
-)
+if (QT_VERSION_MAJOR EQUAL 6)
+    qt_add_executable(achim_alarm
+        ${SOURCES}
+        ${HEADERS}
+    )
 
-target_link_libraries(achim_alarm PRIVATE Qt6::Widgets Qt6::Multimedia)
+    target_link_libraries(achim_alarm PRIVATE Qt6::Widgets Qt6::Multimedia)
+else()
+    add_executable(achim_alarm
+        ${SOURCES}
+        ${HEADERS}
+    )
+
+    target_link_libraries(achim_alarm PRIVATE Qt5::Widgets Qt5::Multimedia)
+endif()
