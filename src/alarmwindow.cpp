@@ -49,7 +49,7 @@ const LanguageStrings englishStrings = {
     QLocale::English,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Achim Alarm")},
+        {QStringLiteral("app_heading"), QStringLiteral("Achim: Have a joyful morning!")},
         {QStringLiteral("date_label"), QStringLiteral("Alarm date")},
         {QStringLiteral("repeat_group"), QStringLiteral("Weekly repeat")},
         {QStringLiteral("repeat_hint"), QStringLiteral("The alarm repeats on selected weekdays. Leave empty for a one-time alarm on the chosen date.")},
@@ -86,8 +86,8 @@ const LanguageStrings englishStrings = {
         {QStringLiteral("repeat_prefix"), QStringLiteral("Repeats every week on %1")},
         {QStringLiteral("list_separator"), QStringLiteral(", ")},
         {QStringLiteral("question_punctuality"), QStringLiteral("How punctual are you usually?")},
-        {QStringLiteral("punctuality_carefree"), QStringLiteral("덤벙대요")},
-        {QStringLiteral("punctuality_meticulous"), QStringLiteral("꼼꼼해요")},
+        {QStringLiteral("punctuality_carefree"), QStringLiteral("I tend to run late")},
+        {QStringLiteral("punctuality_meticulous"), QStringLiteral("I'm very punctual")},
         {QStringLiteral("adjust_label"), QStringLiteral("Arrival preference")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Keep it exact")},
         {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
@@ -151,8 +151,8 @@ const LanguageStrings koreanStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("꼼꼼해요")},
         {QStringLiteral("adjust_label"), QStringLiteral("도착 선호")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("정시에 맞춰주세요")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("조금 더 일찍 부탁해요")},
+        {QStringLiteral("adjust_late"), QStringLiteral("조금 더 늦게 부탁해요")},
         {QStringLiteral("recommendation_title"), QStringLiteral("추천 대안 시간")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("추천을 보려면 유효한 시간을 설정해주세요.")},
@@ -171,7 +171,7 @@ const LanguageStrings japaneseStrings = {
     QLocale::Japanese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("アーチムアラーム")},
+        {QStringLiteral("app_heading"), QStringLiteral("アチム: すてきな朝を！")},
         {QStringLiteral("date_label"), QStringLiteral("アラーム日付")},
         {QStringLiteral("repeat_group"), QStringLiteral("曜日の繰り返し")},
         {QStringLiteral("repeat_hint"), QStringLiteral("選択した曜日に毎週アラームが繰り返されます。選択しない場合は指定日のみ鳴ります。")},
@@ -212,8 +212,8 @@ const LanguageStrings japaneseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("きちんとしています")},
         {QStringLiteral("adjust_label"), QStringLiteral("到着の好み")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("ぴったりにしてください")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("少し早めでお願いします")},
+        {QStringLiteral("adjust_late"), QStringLiteral("少し遅めでお願いします")},
         {QStringLiteral("recommendation_title"), QStringLiteral("おすすめの代替時間")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("有効な時刻を設定すると提案が表示されます。")},
@@ -232,7 +232,7 @@ const LanguageStrings chineseStrings = {
     QLocale::Chinese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("阿晨闹钟")},
+        {QStringLiteral("app_heading"), QStringLiteral("Achim：祝你有个愉快的早晨！")},
         {QStringLiteral("date_label"), QStringLiteral("闹钟日期")},
         {QStringLiteral("repeat_group"), QStringLiteral("按星期重复")},
         {QStringLiteral("repeat_hint"), QStringLiteral("闹钟会在选定的星期几重复。如不选择，则只在指定日期响一次。")},
@@ -273,8 +273,8 @@ const LanguageStrings chineseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("我很细心")},
         {QStringLiteral("adjust_label"), QStringLiteral("到达偏好")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("保持准时")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("请稍微提前一点")},
+        {QStringLiteral("adjust_late"), QStringLiteral("请稍微晚一点")},
         {QStringLiteral("recommendation_title"), QStringLiteral("推荐的备选时间")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("请设置有效时间以查看建议。")},
@@ -293,7 +293,7 @@ const LanguageStrings mongolianStrings = {
     QLocale::Mongolian,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Ачимийсэрүүлэг")},
+        {QStringLiteral("app_heading"), QStringLiteral("Ачим: Өглөөгөө сайхан угтаарай!")},
         {QStringLiteral("date_label"), QStringLiteral("Сэрүүлгийн огноо")},
         {QStringLiteral("repeat_group"), QStringLiteral("Долоо хоног бүр давтах")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Сонгосон гариг бүрт сэрүүлэг давтагдана. Хоосон бол зөвхөн сонгосон өдөр нэг удаа дуугарна.")},
@@ -334,8 +334,8 @@ const LanguageStrings mongolianStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Нямбай")},
         {QStringLiteral("adjust_label"), QStringLiteral("Ирэх цагийн сонголт")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Яг тохируулна уу")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Жаахан эрт болгож өгөөч")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Жаахан орой болгож өгөөч")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Санал болгож буй өөр цагууд")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Зөвлөмж харахын тулд зөв цаг тохируулна уу.")},
@@ -354,7 +354,7 @@ const LanguageStrings vietnameseStrings = {
     QLocale::Vietnamese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Báo thức Achim")},
+        {QStringLiteral("app_heading"), QStringLiteral("Achim: Chúc bạn buổi sáng vui vẻ!")},
         {QStringLiteral("date_label"), QStringLiteral("Ngày báo thức")},
         {QStringLiteral("repeat_group"), QStringLiteral("Lặp theo tuần")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Báo thức sẽ lặp vào các ngày trong tuần được chọn. Để trống để báo một lần vào ngày đã chọn.")},
@@ -395,8 +395,8 @@ const LanguageStrings vietnameseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Tôi rất cẩn thận")},
         {QStringLiteral("adjust_label"), QStringLiteral("Ưu tiên thời điểm đến")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Giữ đúng giờ")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Cho sớm hơn một chút")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Cho muộn hơn một chút")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Giờ gợi ý thay thế")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Hãy đặt thời gian hợp lệ để xem gợi ý.")},
@@ -415,7 +415,7 @@ const LanguageStrings russianStrings = {
     QLocale::Russian,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Будильник Ачим")},
+        {QStringLiteral("app_heading"), QStringLiteral("Achim: Хорошего вам утра!")},
         {QStringLiteral("date_label"), QStringLiteral("Дата будильника")},
         {QStringLiteral("repeat_group"), QStringLiteral("Повтор по дням недели")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Будильник повторяется в выбранные дни недели. Если ничего не выбрано, он сработает один раз в указанную дату.")},
@@ -456,8 +456,8 @@ const LanguageStrings russianStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Я очень аккуратен")},
         {QStringLiteral("adjust_label"), QStringLiteral("Предпочтение прибытия")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Пусть будет точно")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Чуть пораньше, пожалуйста")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Чуть попозже, пожалуйста")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Предложенные альтернативы")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Установите корректное время, чтобы увидеть предложения.")},
@@ -484,8 +484,8 @@ const QVector<LanguageStrings> allStrings = {
 
 QString localizedText(const QString &key)
 {
-    const QLocale locale;
-    const QLocale::Language language = locale.language();
+    const QLocale locale = QLocale::system();
+    const auto uiLanguages = locale.uiLanguages();
     auto lookup = [&](QLocale::Language lang) -> QString {
         for (const auto &entry : allStrings) {
             if (entry.language == lang) {
@@ -495,7 +495,15 @@ QString localizedText(const QString &key)
         return QString();
     };
 
-    QString text = lookup(language);
+    for (const QString &languageTag : uiLanguages) {
+        const QLocale uiLocale(languageTag);
+        const QString text = lookup(uiLocale.language());
+        if (!text.isEmpty()) {
+            return text;
+        }
+    }
+
+    QString text = lookup(locale.language());
     if (!text.isEmpty()) {
         return text;
     }
@@ -605,7 +613,7 @@ void AlarmWindow::buildUi()
     auto *repeatGroup = new QGroupBox(localizedText(QStringLiteral("repeat_group")), this);
     auto *repeatLayout = new QGridLayout(repeatGroup);
     repeatLayout->setSpacing(6);
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     for (int day = Qt::Monday; day <= Qt::Sunday; ++day) {
         auto *check = new QCheckBox(locale.dayName(day, QLocale::ShortFormat), repeatGroup);
         check->setProperty("weekday", day);
@@ -766,7 +774,7 @@ QString AlarmWindow::repeatSummary() const
     QList<int> days = m_repeatDays.values();
     std::sort(days.begin(), days.end());
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     QStringList parts;
     parts.reserve(days.size());
     for (int day : days) {
@@ -1133,7 +1141,7 @@ void AlarmWindow::updateRecommendations()
     const QTime earlierTime = baseTime.addSecs(static_cast<int>(earlierLarge) * 60);
     const QTime laterTime = baseTime.addSecs(static_cast<int>(laterSmall) * 60);
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     const QString earlierTimeText = locale.toString(earlierTime, QLocale::ShortFormat);
     const QString laterTimeText = locale.toString(laterTime, QLocale::ShortFormat);
 
