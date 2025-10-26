@@ -537,7 +537,9 @@ AlarmWindow::AlarmWindow(QWidget *parent)
     buildUi();
 
     m_audioOutput->setVolume(0.8f);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
     m_player->setAudioRole(QAudio::MusicRole);
+#endif
     m_player->setAudioOutput(m_audioOutput);
 
     m_alarmTimer->setSingleShot(true);
