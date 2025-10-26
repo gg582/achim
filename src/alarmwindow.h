@@ -18,6 +18,7 @@ class QSystemTrayIcon;
 class QMenu;
 class QAction;
 class QCloseEvent;
+class QComboBox;
 
 class AlarmWindow : public QWidget
 {
@@ -45,6 +46,8 @@ private:
     void clearWakeRequest();
     void stopPlayback();
     void refreshStatusLabel();
+    void updateRecommendations();
+    int preferenceOffsetMinutes() const;
     void closeEvent(QCloseEvent *event) override;
 
     QLabel *m_statusLabel;
@@ -55,6 +58,9 @@ private:
     QPushButton *m_setButton;
     QPushButton *m_cancelButton;
     QPushButton *m_pickSoundButton;
+    QComboBox *m_punctualityCombo;
+    QComboBox *m_adjustCombo;
+    QLabel *m_recommendationLabel;
     QVector<QCheckBox *> m_repeatChecks;
 
     QTimer *m_countdownTimer;
