@@ -151,8 +151,8 @@ const LanguageStrings koreanStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("꼼꼼해요")},
         {QStringLiteral("adjust_label"), QStringLiteral("도착 선호")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("정시에 맞춰주세요")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("조금 더 일찍 부탁해요")},
+        {QStringLiteral("adjust_late"), QStringLiteral("조금 더 늦게 부탁해요")},
         {QStringLiteral("recommendation_title"), QStringLiteral("추천 대안 시간")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("추천을 보려면 유효한 시간을 설정해주세요.")},
@@ -212,8 +212,8 @@ const LanguageStrings japaneseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("きちんとしています")},
         {QStringLiteral("adjust_label"), QStringLiteral("到着の好み")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("ぴったりにしてください")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("少し早めでお願いします")},
+        {QStringLiteral("adjust_late"), QStringLiteral("少し遅めでお願いします")},
         {QStringLiteral("recommendation_title"), QStringLiteral("おすすめの代替時間")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("有効な時刻を設定すると提案が表示されます。")},
@@ -273,8 +273,8 @@ const LanguageStrings chineseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("我很细心")},
         {QStringLiteral("adjust_label"), QStringLiteral("到达偏好")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("保持准时")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("请稍微提前一点")},
+        {QStringLiteral("adjust_late"), QStringLiteral("请稍微晚一点")},
         {QStringLiteral("recommendation_title"), QStringLiteral("推荐的备选时间")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("请设置有效时间以查看建议。")},
@@ -334,8 +334,8 @@ const LanguageStrings mongolianStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Нямбай")},
         {QStringLiteral("adjust_label"), QStringLiteral("Ирэх цагийн сонголт")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Яг тохируулна уу")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Жаахан эрт болгож өгөөч")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Жаахан орой болгож өгөөч")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Санал болгож буй өөр цагууд")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Зөвлөмж харахын тулд зөв цаг тохируулна уу.")},
@@ -395,8 +395,8 @@ const LanguageStrings vietnameseStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Tôi rất cẩn thận")},
         {QStringLiteral("adjust_label"), QStringLiteral("Ưu tiên thời điểm đến")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Giữ đúng giờ")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Cho sớm hơn một chút")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Cho muộn hơn một chút")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Giờ gợi ý thay thế")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Hãy đặt thời gian hợp lệ để xem gợi ý.")},
@@ -456,8 +456,8 @@ const LanguageStrings russianStrings = {
         {QStringLiteral("punctuality_meticulous"), QStringLiteral("Я очень аккуратен")},
         {QStringLiteral("adjust_label"), QStringLiteral("Предпочтение прибытия")},
         {QStringLiteral("adjust_neutral"), QStringLiteral("Пусть будет точно")},
-        {QStringLiteral("adjust_early"), QStringLiteral("A little earlier please")},
-        {QStringLiteral("adjust_late"), QStringLiteral("A little later please")},
+        {QStringLiteral("adjust_early"), QStringLiteral("Чуть пораньше, пожалуйста")},
+        {QStringLiteral("adjust_late"), QStringLiteral("Чуть попозже, пожалуйста")},
         {QStringLiteral("recommendation_title"), QStringLiteral("Предложенные альтернативы")},
         {QStringLiteral("recommendation_line"), QStringLiteral("• %1: %2 (%3)")},
         {QStringLiteral("recommendation_unavailable"), QStringLiteral("Установите корректное время, чтобы увидеть предложения.")},
@@ -484,8 +484,8 @@ const QVector<LanguageStrings> allStrings = {
 
 QString localizedText(const QString &key)
 {
-    const QLocale locale;
-    const QLocale::Language language = locale.language();
+    const QLocale locale = QLocale::system();
+    const auto uiLanguages = locale.uiLanguages();
     auto lookup = [&](QLocale::Language lang) -> QString {
         for (const auto &entry : allStrings) {
             if (entry.language == lang) {
@@ -495,7 +495,15 @@ QString localizedText(const QString &key)
         return QString();
     };
 
-    QString text = lookup(language);
+    for (const QString &languageTag : uiLanguages) {
+        const QLocale uiLocale(languageTag);
+        const QString text = lookup(uiLocale.language());
+        if (!text.isEmpty()) {
+            return text;
+        }
+    }
+
+    QString text = lookup(locale.language());
     if (!text.isEmpty()) {
         return text;
     }
@@ -605,7 +613,7 @@ void AlarmWindow::buildUi()
     auto *repeatGroup = new QGroupBox(localizedText(QStringLiteral("repeat_group")), this);
     auto *repeatLayout = new QGridLayout(repeatGroup);
     repeatLayout->setSpacing(6);
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     for (int day = Qt::Monday; day <= Qt::Sunday; ++day) {
         auto *check = new QCheckBox(locale.dayName(day, QLocale::ShortFormat), repeatGroup);
         check->setProperty("weekday", day);
@@ -766,7 +774,7 @@ QString AlarmWindow::repeatSummary() const
     QList<int> days = m_repeatDays.values();
     std::sort(days.begin(), days.end());
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     QStringList parts;
     parts.reserve(days.size());
     for (int day : days) {
@@ -1133,7 +1141,7 @@ void AlarmWindow::updateRecommendations()
     const QTime earlierTime = baseTime.addSecs(static_cast<int>(earlierLarge) * 60);
     const QTime laterTime = baseTime.addSecs(static_cast<int>(laterSmall) * 60);
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     const QString earlierTimeText = locale.toString(earlierTime, QLocale::ShortFormat);
     const QString laterTimeText = locale.toString(laterTime, QLocale::ShortFormat);
 
