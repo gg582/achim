@@ -484,8 +484,8 @@ const QVector<LanguageStrings> allStrings = {
 
 QString localizedText(const QString &key)
 {
-    const QLocale locale;
-    const QLocale::Language language = locale.language();
+    const QLocale locale = QLocale::system();
+    const auto uiLanguages = locale.uiLanguages();
     auto lookup = [&](QLocale::Language lang) -> QString {
         for (const auto &entry : allStrings) {
             if (entry.language == lang) {
@@ -495,7 +495,15 @@ QString localizedText(const QString &key)
         return QString();
     };
 
-    QString text = lookup(language);
+    for (const QString &languageTag : uiLanguages) {
+        const QLocale uiLocale(languageTag);
+        const QString text = lookup(uiLocale.language());
+        if (!text.isEmpty()) {
+            return text;
+        }
+    }
+
+    QString text = lookup(locale.language());
     if (!text.isEmpty()) {
         return text;
     }
@@ -605,7 +613,7 @@ void AlarmWindow::buildUi()
     auto *repeatGroup = new QGroupBox(localizedText(QStringLiteral("repeat_group")), this);
     auto *repeatLayout = new QGridLayout(repeatGroup);
     repeatLayout->setSpacing(6);
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     for (int day = Qt::Monday; day <= Qt::Sunday; ++day) {
         auto *check = new QCheckBox(locale.dayName(day, QLocale::ShortFormat), repeatGroup);
         check->setProperty("weekday", day);
@@ -766,7 +774,7 @@ QString AlarmWindow::repeatSummary() const
     QList<int> days = m_repeatDays.values();
     std::sort(days.begin(), days.end());
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     QStringList parts;
     parts.reserve(days.size());
     for (int day : days) {
@@ -1133,7 +1141,7 @@ void AlarmWindow::updateRecommendations()
     const QTime earlierTime = baseTime.addSecs(static_cast<int>(earlierLarge) * 60);
     const QTime laterTime = baseTime.addSecs(static_cast<int>(laterSmall) * 60);
 
-    const QLocale locale;
+    const QLocale locale = QLocale::system();
     const QString earlierTimeText = locale.toString(earlierTime, QLocale::ShortFormat);
     const QString laterTimeText = locale.toString(laterTime, QLocale::ShortFormat);
 
