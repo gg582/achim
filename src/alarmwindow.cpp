@@ -49,7 +49,7 @@ const LanguageStrings englishStrings = {
     QLocale::English,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Simple Alarm")},
+        {QStringLiteral("app_heading"), QStringLiteral("Achim Alarm")},
         {QStringLiteral("date_label"), QStringLiteral("Alarm date")},
         {QStringLiteral("repeat_group"), QStringLiteral("Weekly repeat")},
         {QStringLiteral("repeat_hint"), QStringLiteral("The alarm repeats on selected weekdays. Leave empty for a one-time alarm on the chosen date.")},
@@ -110,7 +110,7 @@ const LanguageStrings koreanStrings = {
     QLocale::Korean,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("간단한 알람")},
+        {QStringLiteral("app_heading"), QStringLiteral("아침: 즐거운 아침 되세요!")},
         {QStringLiteral("date_label"), QStringLiteral("알람 날짜")},
         {QStringLiteral("repeat_group"), QStringLiteral("요일 반복")},
         {QStringLiteral("repeat_hint"), QStringLiteral("선택된 요일에 매주 알람이 반복됩니다. 선택하지 않으면 지정한 날짜의 1회성 알람으로 동작합니다.")},
@@ -171,7 +171,7 @@ const LanguageStrings japaneseStrings = {
     QLocale::Japanese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("シンプルアラーム")},
+        {QStringLiteral("app_heading"), QStringLiteral("アーチムアラーム")},
         {QStringLiteral("date_label"), QStringLiteral("アラーム日付")},
         {QStringLiteral("repeat_group"), QStringLiteral("曜日の繰り返し")},
         {QStringLiteral("repeat_hint"), QStringLiteral("選択した曜日に毎週アラームが繰り返されます。選択しない場合は指定日のみ鳴ります。")},
@@ -232,7 +232,7 @@ const LanguageStrings chineseStrings = {
     QLocale::Chinese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("简易闹钟")},
+        {QStringLiteral("app_heading"), QStringLiteral("阿晨闹钟")},
         {QStringLiteral("date_label"), QStringLiteral("闹钟日期")},
         {QStringLiteral("repeat_group"), QStringLiteral("按星期重复")},
         {QStringLiteral("repeat_hint"), QStringLiteral("闹钟会在选定的星期几重复。如不选择，则只在指定日期响一次。")},
@@ -293,7 +293,7 @@ const LanguageStrings mongolianStrings = {
     QLocale::Mongolian,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Энгийн сэрүүлэг")},
+        {QStringLiteral("app_heading"), QStringLiteral("Ачимийсэрүүлэг")},
         {QStringLiteral("date_label"), QStringLiteral("Сэрүүлгийн огноо")},
         {QStringLiteral("repeat_group"), QStringLiteral("Долоо хоног бүр давтах")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Сонгосон гариг бүрт сэрүүлэг давтагдана. Хоосон бол зөвхөн сонгосон өдөр нэг удаа дуугарна.")},
@@ -354,7 +354,7 @@ const LanguageStrings vietnameseStrings = {
     QLocale::Vietnamese,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Báo thức đơn giản")},
+        {QStringLiteral("app_heading"), QStringLiteral("Báo thức Achim")},
         {QStringLiteral("date_label"), QStringLiteral("Ngày báo thức")},
         {QStringLiteral("repeat_group"), QStringLiteral("Lặp theo tuần")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Báo thức sẽ lặp vào các ngày trong tuần được chọn. Để trống để báo một lần vào ngày đã chọn.")},
@@ -415,7 +415,7 @@ const LanguageStrings russianStrings = {
     QLocale::Russian,
     {
         {QStringLiteral("app_title"), QStringLiteral("Achim Alarm")},
-        {QStringLiteral("app_heading"), QStringLiteral("Простой будильник")},
+        {QStringLiteral("app_heading"), QStringLiteral("Будильник Ачим")},
         {QStringLiteral("date_label"), QStringLiteral("Дата будильника")},
         {QStringLiteral("repeat_group"), QStringLiteral("Повтор по дням недели")},
         {QStringLiteral("repeat_hint"), QStringLiteral("Будильник повторяется в выбранные дни недели. Если ничего не выбрано, он сработает один раз в указанную дату.")},
@@ -537,9 +537,6 @@ AlarmWindow::AlarmWindow(QWidget *parent)
     buildUi();
 
     m_audioOutput->setVolume(0.8f);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-    m_player->setAudioRole(QAudio::MusicRole);
-#endif
     m_player->setAudioOutput(m_audioOutput);
 
     m_alarmTimer->setSingleShot(true);
