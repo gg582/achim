@@ -11,6 +11,7 @@
 #include <QDateTime>
 #include <QFile>
 #include <QFileDialog>
+#include <QFileIconProvider>
 #include <QFileInfo>
 #include <QFont>
 #include <QGroupBox>
@@ -29,6 +30,7 @@
 #include <QTimer>
 #include <QUrl>
 #include <QVBoxLayout>
+#include <QDir>
 #include <QSystemTrayIcon>
 #include <QtGlobal>
 #include <QApplication>
@@ -516,6 +518,107 @@ QString localizedText(const QString &key)
     return englishStrings.values.value(key, key);
 }
 
+QIcon systemClockIcon()
+{
+    const auto tryThemeIcons = [](const QStringList &names) -> QIcon {
+        for (const QString &name : names) {
+            if (name.isEmpty()) {
+                continue;
+            }
+            const QIcon icon = QIcon::fromTheme(name);
+            if (!icon.isNull()) {
+                return icon;
+            }
+        }
+        return {};
+    };
+
+    QIcon icon;
+
+#if defined(Q_OS_WINDOWS)
+    icon = tryThemeIcons(QStringList{
+        QStringLiteral("clock"),
+        QStringLiteral("AlarmClock"),
+        QStringLiteral("timedate"),
+        QStringLiteral("date-and-time")
+    });
+    if (icon.isNull()) {
+        QFileIconProvider provider;
+        const auto iconFromPath = [&](const QString &path) -> QIcon {
+            const QFileInfo info(path);
+            if (info.exists()) {
+                return provider.icon(info);
+            }
+            return {};
+        };
+
+        const QString windowsDir = qEnvironmentVariable("WINDIR");
+        if (!windowsDir.isEmpty()) {
+            icon = iconFromPath(QDir(windowsDir).filePath(QStringLiteral("System32/timedate.cpl")));
+        }
+        if (icon.isNull()) {
+            icon = iconFromPath(QStringLiteral("C:/Windows/System32/timedate.cpl"));
+        }
+    }
+#elif defined(Q_OS_MACOS)
+    icon = tryThemeIcons(QStringList{
+        QStringLiteral("clock"),
+        QStringLiteral("Clock"),
+        QStringLiteral("com.apple.clockapp"),
+        QStringLiteral("com.apple.menuitem.clock")
+    });
+    if (icon.isNull()) {
+        QFileIconProvider provider;
+        const auto iconFromPath = [&](const QString &path) -> QIcon {
+            const QFileInfo info(path);
+            if (info.exists()) {
+                return provider.icon(info);
+            }
+            return {};
+        };
+
+        icon = iconFromPath(QStringLiteral("/System/Applications/Clock.app"));
+        if (icon.isNull()) {
+            icon = iconFromPath(QStringLiteral("/Applications/Clock.app"));
+        }
+    }
+#elif defined(Q_OS_IOS)
+    icon = tryThemeIcons(QStringList{
+        QStringLiteral("clock"),
+        QStringLiteral("Clock")
+    });
+#elif defined(Q_OS_ANDROID)
+    icon = tryThemeIcons(QStringList{
+        QStringLiteral("clock"),
+        QStringLiteral("alarm"),
+        QStringLiteral("ic_menu_recent_history"),
+        QStringLiteral("ic_menu_history")
+    });
+#else
+    icon = tryThemeIcons(QStringList{
+        QStringLiteral("clock"),
+        QStringLiteral("alarm"),
+        QStringLiteral("alarm-clock"),
+        QStringLiteral("preferences-system-time"),
+        QStringLiteral("org.gnome.clocks"),
+        QStringLiteral("gnome-clocks"),
+        QStringLiteral("appointment-new")
+    });
+#endif
+
+    if (icon.isNull()) {
+        icon = tryThemeIcons(QStringList{
+            QStringLiteral("clock"),
+            QStringLiteral("alarm"),
+            QStringLiteral("preferences-system-time"),
+            QStringLiteral("appointment-new"),
+            QStringLiteral("time")
+        });
+    }
+
+    return icon;
+}
+
 } // namespace
 
 AlarmWindow::AlarmWindow(QWidget *parent)
@@ -687,7 +790,7 @@ void AlarmWindow::setupSystemTray()
 
     if (!m_trayIcon) {
         m_trayIcon = new QSystemTrayIcon(this);
-        QIcon trayIcon = QIcon::fromTheme(QStringLiteral("alarm"));
+        QIcon trayIcon = systemClockIcon();
         if (trayIcon.isNull()) {
             trayIcon = windowIcon();
         }
