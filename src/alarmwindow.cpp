@@ -646,6 +646,10 @@ QIcon systemClockIcon()
         });
     }
 
+    if (icon.isNull()) {
+        icon = QIcon(QStringLiteral(":/tray/logo.png"));
+    }
+
     return icon;
 }
 

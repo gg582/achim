@@ -50,3 +50,19 @@ pwsh -ExecutionPolicy Bypass -File scripts/install_windows.ps1
 ```
 
 스크립트는 Release 빌드 후 `macdeployqt`가 발견되면 실행하여 `.app` 번들을 완성하고 `dist/macos`에 복사합니다.
+
+### Android
+
+```bash
+./scripts/package_android.sh
+```
+
+`ANDROID_DEPLOY_JSON` 환경 변수를 사용하여 `androiddeployqt` 입력 JSON 경로를 지정하면 자동으로 APK 번들을 갱신합니다. 스크립트는 항상 `dist/android` 아래에 트레이 아이콘을 포함한 리소스를 준비합니다.
+
+### iOS
+
+```bash
+./scripts/package_ios.sh
+```
+
+스크립트는 `dist/ios` 아래에 트레이 아이콘을 포함한 Asset Catalog(`TrayIcon.imageset`)를 생성합니다. Xcode 프로젝트에 추가하여 사용할 수 있습니다.

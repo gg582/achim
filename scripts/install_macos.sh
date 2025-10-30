@@ -20,6 +20,12 @@ if [[ ! -d "$APP_BUNDLE" ]]; then
     exit 1
 fi
 
+ICON_SOURCE="$REPO_ROOT/tray/logo.png"
+if [[ -f "$ICON_SOURCE" ]]; then
+    install -d "$APP_BUNDLE/Contents/Resources"
+    install -m 0644 "$ICON_SOURCE" "$APP_BUNDLE/Contents/Resources/tray_icon.png"
+fi
+
 if command -v macdeployqt >/dev/null 2>&1; then
     macdeployqt "$APP_BUNDLE" -verbose=1
 else
