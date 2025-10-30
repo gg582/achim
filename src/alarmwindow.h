@@ -13,9 +13,7 @@ class QTimeEdit;
 class QCheckBox;
 class QTimer;
 class QMediaPlayer;
-#if QT_VERSION_MAJOR >= 6
 class QAudioOutput;
-#endif
 class QDateEdit;
 class QSystemTrayIcon;
 class QMenu;
@@ -73,9 +71,7 @@ private:
     QTimer *m_alarmTimer;
 
     QMediaPlayer *m_player;
-#if QT_VERSION_MAJOR >= 6
     QAudioOutput *m_audioOutput;
-#endif
     QSystemTrayIcon *m_trayIcon;
     QMenu *m_trayMenu;
     QAction *m_showAction;
