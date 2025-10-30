@@ -1,9 +1,11 @@
 #include "alarmwindow.h"
 
 #include <QAbstractSpinBox>
-#include <QAudioOutput>
 #include <QAction>
 #include <QAudio>
+#if QT_VERSION_MAJOR >= 6
+#include <QAudioOutput>
+#endif
 #include <QCheckBox>
 #include <QCloseEvent>
 #include <QComboBox>
@@ -67,6 +69,8 @@ const LanguageStrings englishStrings = {
         {QStringLiteral("status_none"), QStringLiteral("No alarm scheduled.")},
         {QStringLiteral("sound_required_title"), QStringLiteral("Sound required")},
         {QStringLiteral("sound_required_body"), QStringLiteral("Please choose an alarm sound first.")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("Sound missing")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("The selected sound file could not be found. Please choose a new file.")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("Repeat scheduling failed")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("Could not compute the next alarm time for the chosen weekdays.")},
         {QStringLiteral("time_error_title"), QStringLiteral("Time error")},
@@ -78,6 +82,8 @@ const LanguageStrings englishStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("No write permission for %1. Run as administrator or adjust udev rules." )},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("Failed to clear the RTC alarm: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("Failed to schedule the RTC alarm: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("Playback error")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("Could not play the alarm sound: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("Audio files (*.mp3 *.wav *.ogg);;All files (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("Show window")},
         {QStringLiteral("tray_cancel"), QStringLiteral("Cancel alarm")},
@@ -128,6 +134,8 @@ const LanguageStrings koreanStrings = {
         {QStringLiteral("status_none"), QStringLiteral("알람이 설정되지 않았습니다.")},
         {QStringLiteral("sound_required_title"), QStringLiteral("알람 소리 필요")},
         {QStringLiteral("sound_required_body"), QStringLiteral("알람 소리를 먼저 선택해주세요.")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("소리를 찾을 수 없음")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("선택한 소리 파일을 찾을 수 없습니다. 새 파일을 선택해주세요.")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("반복 예약 실패")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("선택한 요일로 다음 알람 시간을 계산할 수 없습니다.")},
         {QStringLiteral("time_error_title"), QStringLiteral("시간 오류")},
@@ -139,6 +147,8 @@ const LanguageStrings koreanStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("%1에 기록 권한이 없습니다. 관리자 권한으로 실행하거나 udev 규칙을 추가해주세요.")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("RTC 알람 초기화에 실패했습니다: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("RTC 알람 예약에 실패했습니다: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("재생 오류")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("알람 소리를 재생할 수 없습니다: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("오디오 파일 (*.mp3 *.wav *.ogg);;모든 파일 (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("창 열기")},
         {QStringLiteral("tray_cancel"), QStringLiteral("알람 해제")},
@@ -189,6 +199,8 @@ const LanguageStrings japaneseStrings = {
         {QStringLiteral("status_none"), QStringLiteral("アラームは設定されていません。")},
         {QStringLiteral("sound_required_title"), QStringLiteral("サウンドが必要です")},
         {QStringLiteral("sound_required_body"), QStringLiteral("まずアラーム音を選択してください。")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("サウンドが見つかりません")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("選択したサウンドファイルが見つかりません。別のファイルを選択してください。")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("繰り返しの予約に失敗しました")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("選択した曜日で次のアラーム時刻を計算できませんでした。")},
         {QStringLiteral("time_error_title"), QStringLiteral("時刻エラー")},
@@ -200,6 +212,8 @@ const LanguageStrings japaneseStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("%1 への書き込み権限がありません。管理者として実行するか、udev ルールを調整してください。")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("RTC アラームのクリアに失敗しました: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("RTC アラームの予約に失敗しました: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("再生エラー")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("アラーム音を再生できません: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("オーディオファイル (*.mp3 *.wav *.ogg);;すべてのファイル (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("ウィンドウを表示")},
         {QStringLiteral("tray_cancel"), QStringLiteral("アラームを解除")},
@@ -250,6 +264,8 @@ const LanguageStrings chineseStrings = {
         {QStringLiteral("status_none"), QStringLiteral("尚未设置闹钟。")},
         {QStringLiteral("sound_required_title"), QStringLiteral("需要选择声音")},
         {QStringLiteral("sound_required_body"), QStringLiteral("请先选择闹铃声音。")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("无法找到铃声")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("所选铃声文件不存在，请重新选择。")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("重复计划失败")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("无法根据所选星期计算下一次闹钟时间。")},
         {QStringLiteral("time_error_title"), QStringLiteral("时间错误")},
@@ -261,6 +277,8 @@ const LanguageStrings chineseStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("没有 %1 的写权限。请以管理员身份运行或调整 udev 规则。")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("清除 RTC 闹钟失败：%1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("设置 RTC 闹钟失败：%1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("播放错误")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("无法播放铃声：%1")},
         {QStringLiteral("audio_filter"), QStringLiteral("音频文件 (*.mp3 *.wav *.ogg);;所有文件 (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("显示窗口")},
         {QStringLiteral("tray_cancel"), QStringLiteral("取消闹钟")},
@@ -311,6 +329,8 @@ const LanguageStrings mongolianStrings = {
         {QStringLiteral("status_none"), QStringLiteral("Сэрүүлэг тохируулаагүй байна.")},
         {QStringLiteral("sound_required_title"), QStringLiteral("Дуу шаардлагатай")},
         {QStringLiteral("sound_required_body"), QStringLiteral("Эхлээд сэрүүлгийн дуу сонгоно уу.")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("Дуу олдсонгүй")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("Сонгосон дохионы файлыг олдсонгүй. Шинэ файлыг сонгоно уу.")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("Давталтыг тооцоолоход алдаа гарлаа")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("Сонгосон өдрүүдээр дараагийн сэрүүлгийн цагийг тооцоолж чадсангүй.")},
         {QStringLiteral("time_error_title"), QStringLiteral("Цагийн алдаа")},
@@ -322,6 +342,8 @@ const LanguageStrings mongolianStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("%1 дээр бичих эрх байхгүй. Администратор эрхээр ажиллуулах эсвэл udev дүрмийг засна уу.")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("RTC сэрүүлгийг арилгаж чадсангүй: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("RTC сэрүүлгийг тохируулахад алдаа гарлаа: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("Тоглуулалтын алдаа")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("Сэрүүлгийн дууг тоглуулж чадсангүй: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("Аудио файлууд (*.mp3 *.wav *.ogg);;Бүх файлууд (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("Цонхыг харуулах")},
         {QStringLiteral("tray_cancel"), QStringLiteral("Сэрүүлгийг цуцлах")},
@@ -372,6 +394,8 @@ const LanguageStrings vietnameseStrings = {
         {QStringLiteral("status_none"), QStringLiteral("Chưa có báo thức nào.")},
         {QStringLiteral("sound_required_title"), QStringLiteral("Cần âm báo")},
         {QStringLiteral("sound_required_body"), QStringLiteral("Vui lòng chọn âm báo trước.")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("Không tìm thấy âm thanh")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("Không tìm thấy tập tin âm thanh đã chọn. Vui lòng chọn tập tin khác.")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("Không thể đặt lặp")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("Không thể tính thời gian báo tiếp theo cho các ngày đã chọn.")},
         {QStringLiteral("time_error_title"), QStringLiteral("Lỗi thời gian")},
@@ -383,6 +407,8 @@ const LanguageStrings vietnameseStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("Không có quyền ghi vào %1. Hãy chạy với quyền quản trị hoặc điều chỉnh quy tắc udev.")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("Không xoá được báo RTC: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("Không đặt được báo RTC: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("Lỗi phát")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("Không thể phát âm thanh báo thức: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("Tệp âm thanh (*.mp3 *.wav *.ogg);;Tất cả tệp (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("Hiển thị cửa sổ")},
         {QStringLiteral("tray_cancel"), QStringLiteral("Huỷ báo thức")},
@@ -433,6 +459,8 @@ const LanguageStrings russianStrings = {
         {QStringLiteral("status_none"), QStringLiteral("Будильник не установлен.")},
         {QStringLiteral("sound_required_title"), QStringLiteral("Требуется звук")},
         {QStringLiteral("sound_required_body"), QStringLiteral("Сначала выберите звук будильника.")},
+        {QStringLiteral("sound_missing_title"), QStringLiteral("Звук не найден")},
+        {QStringLiteral("sound_missing_body"), QStringLiteral("Выбранный звуковой файл не найден. Выберите новый файл.")},
         {QStringLiteral("repeat_failure_title"), QStringLiteral("Не удалось настроить повтор")},
         {QStringLiteral("repeat_failure_body"), QStringLiteral("Не удалось вычислить время следующего срабатывания для выбранных дней.")},
         {QStringLiteral("time_error_title"), QStringLiteral("Ошибка времени")},
@@ -444,6 +472,8 @@ const LanguageStrings russianStrings = {
         {QStringLiteral("wake_permission_error"), QStringLiteral("Нет прав записи в %1. Запустите от имени администратора или настройте правила udev.")},
         {QStringLiteral("wake_clear_failed"), QStringLiteral("Не удалось очистить будильник RTC: %1")},
         {QStringLiteral("wake_set_failed"), QStringLiteral("Не удалось запланировать будильник RTC: %1")},
+        {QStringLiteral("playback_error_title"), QStringLiteral("Ошибка воспроизведения")},
+        {QStringLiteral("playback_error_body"), QStringLiteral("Не удалось воспроизвести звук будильника: %1")},
         {QStringLiteral("audio_filter"), QStringLiteral("Аудиофайлы (*.mp3 *.wav *.ogg);;Все файлы (*.*)")},
         {QStringLiteral("tray_show"), QStringLiteral("Показать окно")},
         {QStringLiteral("tray_cancel"), QStringLiteral("Отменить будильник")},
@@ -637,18 +667,25 @@ AlarmWindow::AlarmWindow(QWidget *parent)
       m_countdownTimer(new QTimer(this)),
       m_alarmTimer(new QTimer(this)),
       m_player(new QMediaPlayer(this)),
+#if QT_VERSION_MAJOR >= 6
       m_audioOutput(new QAudioOutput(this)),
+#endif
       m_trayIcon(nullptr),
       m_trayMenu(nullptr),
       m_showAction(nullptr),
       m_quitAction(nullptr),
       m_wakeRequestActive(false),
-      m_trayMessageShown(false)
+      m_trayMessageShown(false),
+      m_loopPlayback(false)
 {
     buildUi();
 
+#if QT_VERSION_MAJOR >= 6
     m_audioOutput->setVolume(0.8f);
     m_player->setAudioOutput(m_audioOutput);
+#else
+    m_player->setVolume(80);
+#endif
 
     m_alarmTimer->setSingleShot(true);
     connect(m_alarmTimer, &QTimer::timeout, this, &AlarmWindow::handleAlarmTriggered);
@@ -659,6 +696,33 @@ AlarmWindow::AlarmWindow(QWidget *parent)
     connect(m_pickSoundButton, &QPushButton::clicked, this, &AlarmWindow::pickSound);
     connect(m_setButton, &QPushButton::clicked, this, &AlarmWindow::scheduleAlarm);
     connect(m_cancelButton, &QPushButton::clicked, this, &AlarmWindow::cancelAlarm);
+
+    connect(m_player, &QMediaPlayer::mediaStatusChanged, this, [this](QMediaPlayer::MediaStatus status) {
+        if (m_loopPlayback && status == QMediaPlayer::EndOfMedia) {
+            m_player->setPosition(0);
+            m_player->play();
+        }
+    });
+#if QT_VERSION_MAJOR >= 6
+    connect(m_player, &QMediaPlayer::playbackStateChanged, this, [this](QMediaPlayer::PlaybackState) {
+        refreshStatusLabel();
+    });
+    connect(m_player, &QMediaPlayer::errorOccurred, this, [this](QMediaPlayer::Error, const QString &errorString) {
+        if (!errorString.isEmpty()) {
+            showPlaybackError(errorString);
+        }
+    });
+#else
+    connect(m_player, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State) {
+        refreshStatusLabel();
+    });
+    connect(m_player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), this, [this](QMediaPlayer::Error) {
+        const QString errorString = m_player->errorString();
+        if (!errorString.isEmpty()) {
+            showPlaybackError(errorString);
+        }
+    });
+#endif
 
     if (m_timeEdit) {
         connect(m_timeEdit, &QTimeEdit::timeChanged, this, &AlarmWindow::updateRecommendations);
@@ -911,6 +975,10 @@ void AlarmWindow::scheduleAlarm()
         return;
     }
 
+    if (!ensureSoundFileAccessible()) {
+        return;
+    }
+
     loadRepeatSelectionFromUi();
 
     const QDateTime now = QDateTime::currentDateTime();
@@ -1003,8 +1071,7 @@ void AlarmWindow::handleAlarmTriggered()
     refreshStatusLabel();
 
     if (!m_soundPath.isEmpty()) {
-        m_player->setSource(QUrl::fromLocalFile(m_soundPath));
-        m_player->play();
+        startPlayback();
     }
 
     if (!m_repeatDays.isEmpty()) {
@@ -1128,16 +1195,78 @@ bool AlarmWindow::scheduleWakeFromSuspend(const QDateTime &alarmTime, QString *e
 #endif
 }
 
+bool AlarmWindow::ensureSoundFileAccessible()
+{
+    if (m_soundPath.isEmpty()) {
+        return false;
+    }
+
+    QFileInfo info(m_soundPath);
+    if (!info.exists()) {
+        QMessageBox::warning(this,
+                             localizedText(QStringLiteral("sound_missing_title")),
+                             localizedText(QStringLiteral("sound_missing_body")));
+        m_soundPath.clear();
+        if (m_soundLabel) {
+            m_soundLabel->setText(localizedText(QStringLiteral("no_sound_selected")));
+        }
+        return false;
+    }
+
+    return true;
+}
+
+void AlarmWindow::startPlayback()
+{
+    if (!ensureSoundFileAccessible()) {
+        return;
+    }
+
+    stopPlayback();
+
+#if QT_VERSION_MAJOR >= 6
+    m_player->setSource(QUrl::fromLocalFile(m_soundPath));
+#else
+    m_player->setMedia(QUrl::fromLocalFile(m_soundPath));
+#endif
+    m_loopPlayback = true;
+    m_player->play();
+    refreshStatusLabel();
+}
+
+void AlarmWindow::showPlaybackError(const QString &errorText)
+{
+    stopPlayback();
+    QMessageBox::warning(this,
+                         localizedText(QStringLiteral("playback_error_title")),
+                         localizedText(QStringLiteral("playback_error_body")).arg(errorText));
+    refreshStatusLabel();
+}
+
 void AlarmWindow::stopPlayback()
 {
-    if (m_player->playbackState() == QMediaPlayer::PlayingState) {
+#if QT_VERSION_MAJOR >= 6
+    const QMediaPlayer::PlaybackState state = m_player->playbackState();
+    if (state != QMediaPlayer::StoppedState) {
         m_player->stop();
     }
+#else
+    const QMediaPlayer::State state = m_player->state();
+    if (state != QMediaPlayer::StoppedState) {
+        m_player->stop();
+    }
+#endif
+    m_loopPlayback = false;
 }
 
 void AlarmWindow::refreshStatusLabel()
 {
-    if (m_player->playbackState() == QMediaPlayer::PlayingState) {
+#if QT_VERSION_MAJOR >= 6
+    const QMediaPlayer::PlaybackState playbackState = m_player->playbackState();
+#else
+    const QMediaPlayer::State playbackState = m_player->state();
+#endif
+    if (playbackState == QMediaPlayer::PlayingState) {
         m_statusLabel->setText(localizedText(QStringLiteral("status_playing")));
         return;
     }
