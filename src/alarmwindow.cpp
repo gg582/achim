@@ -2,10 +2,7 @@
 
 #include <QAbstractSpinBox>
 #include <QAction>
-#include <QAudio>
-#if QT_VERSION_MAJOR >= 6
 #include <QAudioOutput>
-#endif
 #include <QCheckBox>
 #include <QCloseEvent>
 #include <QComboBox>
@@ -671,9 +668,7 @@ AlarmWindow::AlarmWindow(QWidget *parent)
       m_countdownTimer(new QTimer(this)),
       m_alarmTimer(new QTimer(this)),
       m_player(new QMediaPlayer(this)),
-#if QT_VERSION_MAJOR >= 6
       m_audioOutput(new QAudioOutput(this)),
-#endif
       m_trayIcon(nullptr),
       m_trayMenu(nullptr),
       m_showAction(nullptr),
@@ -684,18 +679,8 @@ AlarmWindow::AlarmWindow(QWidget *parent)
 {
     buildUi();
 
-#if QT_VERSION_MAJOR >= 6
     m_audioOutput->setVolume(0.8f);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
-    m_audioOutput->setCategory(QAudio::Category::Alarm);
-#endif
     m_player->setAudioOutput(m_audioOutput);
-#else
-    m_player->setVolume(80);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
-    m_player->setAudioRole(QAudio::AlarmRole);
-#endif
-#endif
 
     m_alarmTimer->setSingleShot(true);
     connect(m_alarmTimer, &QTimer::timeout, this, &AlarmWindow::handleAlarmTriggered);
@@ -713,7 +698,6 @@ AlarmWindow::AlarmWindow(QWidget *parent)
             m_player->play();
         }
     });
-#if QT_VERSION_MAJOR >= 6
     connect(m_player, &QMediaPlayer::playbackStateChanged, this, [this](QMediaPlayer::PlaybackState) {
         refreshStatusLabel();
     });
@@ -722,17 +706,6 @@ AlarmWindow::AlarmWindow(QWidget *parent)
             showPlaybackError(errorString);
         }
     });
-#else
-    connect(m_player, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State) {
-        refreshStatusLabel();
-    });
-    connect(m_player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), this, [this](QMediaPlayer::Error) {
-        const QString errorString = m_player->errorString();
-        if (!errorString.isEmpty()) {
-            showPlaybackError(errorString);
-        }
-    });
-#endif
 
     if (m_timeEdit) {
         connect(m_timeEdit, &QTimeEdit::timeChanged, this, &AlarmWindow::updateRecommendations);
@@ -1234,11 +1207,7 @@ void AlarmWindow::startPlayback()
 
     stopPlayback();
 
-#if QT_VERSION_MAJOR >= 6
     m_player->setSource(QUrl::fromLocalFile(m_soundPath));
-#else
-    m_player->setMedia(QUrl::fromLocalFile(m_soundPath));
-#endif
     m_loopPlayback = true;
     m_player->play();
     refreshStatusLabel();
@@ -1255,27 +1224,16 @@ void AlarmWindow::showPlaybackError(const QString &errorText)
 
 void AlarmWindow::stopPlayback()
 {
-#if QT_VERSION_MAJOR >= 6
     const QMediaPlayer::PlaybackState state = m_player->playbackState();
     if (state != QMediaPlayer::StoppedState) {
         m_player->stop();
     }
-#else
-    const QMediaPlayer::State state = m_player->state();
-    if (state != QMediaPlayer::StoppedState) {
-        m_player->stop();
-    }
-#endif
     m_loopPlayback = false;
 }
 
 void AlarmWindow::refreshStatusLabel()
 {
-#if QT_VERSION_MAJOR >= 6
     const QMediaPlayer::PlaybackState playbackState = m_player->playbackState();
-#else
-    const QMediaPlayer::State playbackState = m_player->state();
-#endif
     if (playbackState == QMediaPlayer::PlayingState) {
         m_statusLabel->setText(localizedText(QStringLiteral("status_playing")));
         return;
