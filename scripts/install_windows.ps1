@@ -39,6 +39,11 @@ if (-not $binaryPath) {
 New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 Copy-Item $binaryPath (Join-Path $InstallDir $exeName) -Force
 
+$trayIconSource = Join-Path $repoRoot "tray/logo.png"
+if (Test-Path $trayIconSource) {
+    Copy-Item $trayIconSource (Join-Path $InstallDir "tray_icon.png") -Force
+}
+
 $deployTool = Get-Command windeployqt -ErrorAction SilentlyContinue
 if ($deployTool) {
     & $deployTool.Source --multimedia --compiler-runtime --dir $InstallDir $binaryPath

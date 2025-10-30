@@ -18,6 +18,7 @@ endif()
 set(SOURCES
     src/main.cpp
     src/alarmwindow.cpp
+    resources/achim.qrc
 )
 
 set(HEADERS
