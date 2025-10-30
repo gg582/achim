@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 project(achim_alarm LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
@@ -8,12 +8,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Widgets Multimedia)
 
-if (QT_VERSION_MAJOR EQUAL 6)
-    qt_standard_project_setup()
-endif()
+qt_standard_project_setup()
 
 set(SOURCES
     src/main.cpp
@@ -25,21 +22,12 @@ set(HEADERS
     src/alarmwindow.h
 )
 
-if (QT_VERSION_MAJOR EQUAL 6)
-    qt_add_executable(achim_alarm
-        ${SOURCES}
-        ${HEADERS}
-    )
+qt_add_executable(achim_alarm
+    ${SOURCES}
+    ${HEADERS}
+)
 
-    target_link_libraries(achim_alarm PRIVATE Qt6::Widgets Qt6::Multimedia)
-else()
-    add_executable(achim_alarm
-        ${SOURCES}
-        ${HEADERS}
-    )
-
-    target_link_libraries(achim_alarm PRIVATE Qt5::Widgets Qt5::Multimedia)
-endif()
+target_link_libraries(achim_alarm PRIVATE Qt6::Widgets Qt6::Multimedia)
 
 install(TARGETS achim_alarm
     BUNDLE DESTINATION .
