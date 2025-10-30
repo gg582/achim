@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Achim
 Comment=Set and manage alarms
-Exec=pkexec /usr/local/bin/achim_alarm
-Icon=utilities-clock
+Exec=pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS /usr/local/bin/achim_alarm
+Icon=/opt/achim/achim.png
 Terminal=false
 Type=Application
 Categories=Utility;Clock;
