@@ -2,7 +2,6 @@
 
 #include <QAbstractSpinBox>
 #include <QAction>
-#include <QAudio>
 #include <QAudioOutput>
 #include <QCheckBox>
 #include <QCloseEvent>
@@ -681,7 +680,6 @@ AlarmWindow::AlarmWindow(QWidget *parent)
     buildUi();
 
     m_audioOutput->setVolume(0.8f);
-    m_audioOutput->setCategory(QAudio::Category::Alarm);
     m_player->setAudioOutput(m_audioOutput);
 
     m_alarmTimer->setSingleShot(true);
