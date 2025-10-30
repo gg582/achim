@@ -1,6 +1,7 @@
 #ifndef ALARMWINDOW_H
 #define ALARMWINDOW_H
 
+#include <QtGlobal>
 #include <QDateTime>
 #include <QSet>
 #include <QVector>
@@ -12,7 +13,9 @@ class QTimeEdit;
 class QCheckBox;
 class QTimer;
 class QMediaPlayer;
+#if QT_VERSION_MAJOR >= 6
 class QAudioOutput;
+#endif
 class QDateEdit;
 class QSystemTrayIcon;
 class QMenu;
@@ -45,6 +48,9 @@ private:
     bool scheduleWakeFromSuspend(const QDateTime &alarmTime, QString *errorMessage = nullptr);
     void clearWakeRequest();
     void stopPlayback();
+    void startPlayback();
+    bool ensureSoundFileAccessible();
+    void showPlaybackError(const QString &errorText);
     void refreshStatusLabel();
     void updateRecommendations();
     int preferenceOffsetMinutes() const;
@@ -67,7 +73,9 @@ private:
     QTimer *m_alarmTimer;
 
     QMediaPlayer *m_player;
+#if QT_VERSION_MAJOR >= 6
     QAudioOutput *m_audioOutput;
+#endif
     QSystemTrayIcon *m_trayIcon;
     QMenu *m_trayMenu;
     QAction *m_showAction;
@@ -78,6 +86,7 @@ private:
     bool m_wakeRequestActive;
     bool m_trayMessageShown;
     QSet<int> m_repeatDays;
+    bool m_loopPlayback;
 };
 
 #endif // ALARMWINDOW_H

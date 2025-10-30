@@ -39,3 +39,8 @@ else()
 
     target_link_libraries(achim_alarm PRIVATE Qt5::Widgets Qt5::Multimedia)
 endif()
+
+install(TARGETS achim_alarm
+    BUNDLE DESTINATION .
+    RUNTIME DESTINATION bin
+)
