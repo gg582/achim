@@ -4,7 +4,7 @@
 
 ## 빌드 방법
 
-이 프로젝트는 Qt 6 (Widgets, Multimedia 모듈)을 사용합니다.
+이 프로젝트는 Qt 6.8 (Widgets, Multimedia 모듈)을 사용합니다.
 
 ```bash
 cmake -S . -B build
