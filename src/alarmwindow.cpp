@@ -2,7 +2,9 @@
 
 #include <QAbstractSpinBox>
 #include <QAction>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QAudio>
+#endif
 #include <QAudioOutput>
 #include <QCheckBox>
 #include <QCloseEvent>
@@ -682,9 +684,7 @@ AlarmWindow::AlarmWindow(QWidget *parent)
 
     m_audioOutput->setVolume(0.8f);
     m_player->setAudioOutput(m_audioOutput);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    m_player->setAudioRole(QAudio::Role::AlarmRole);
-#else
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_player->setAudioRole(QAudio::AlarmRole);
 #endif
 
